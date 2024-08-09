@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .bg-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .bg-video-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.63); /* Adjust the opacity as needed */
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            color: white; /* Change text color if needed */
+            /* Add other styles for content here */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            animation: fadeIn 2s ease-out; /* Fade-in animation */
+        }
+
+        .navbar {
+            background-color: #1c1c1c83; /* Dark navbar background */
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            color: #ffffff; /* Light text color */
+            font-size: 1.5rem; /* Increase font size */
+            font-weight: 700; /* Increase font weight */
+        }
+
+        .navbar-brand:hover {
+            color: #e0e0e0; /* Slightly lighter text on hover */
+            transition: color 0.3s ease; /* Smooth color transition */
+        }
+
+        .navbar-brand img {
+            width: 60px; /* Adjust logo size */
+            height: 60px; /* Maintain aspect ratio */
+            margin-right: 10px; /* Space between logo and text */
+            border-radius: 50%;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff; /* Light text color for nav links */
+            transition: color 0.3s ease; /* Smooth color transition */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #e0e0e0; /* Slightly lighter text on hover for nav links */
+        }
+
+        .content .container {
+            text-align: center;
+        }
+
+      
+
+        .bd-placeholder-img {
+            animation: bounce 2s infinite; /* Bounce animation for SVG */
+        }
+
+        .btn-secondary {
+            animation: pulse 2s infinite; /* Pulse animation for buttons */
+        }
+
+        /* Media Queries */
+        @media (max-width: 1200px) {
+            .navbar-brand {
+                font-size: 1.25rem; /* Adjust font size */
+            }
+
+            .navbar-brand img {
+                width: 50px; /* Adjust logo size */
+                height: 50px; /* Maintain aspect ratio */
+            }
+
+            .content .container {
+                padding: 0 10px; /* Add padding for smaller screens */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 10px 0; /* Adjust padding */
+            }
+
+            .content .container {
+                padding: 0 15px; /* Add padding for smaller screens */
+            }
+
+            .navbar-brand {
+                font-size: 1.1rem; /* Further reduce font size */
+            }
+
+            .navbar-brand img {
+                width: 40px; /* Adjust logo size */
+                height: 40px; /* Maintain aspect ratio */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px; /* Add padding for smaller screens */
+            }
+
+            .navbar-brand {
+                font-size: 1rem; /* Further reduce font size */
+            }
+
+            .navbar-brand img {
+                width: 35px; /* Adjust logo size */
+                height: 35px; /* Maintain aspect ratio */
+            }
+
+            .content .container {
+                padding: 0 10px; /* Add padding for smaller screens */
+            }
+
+            .content h2 {
+                font-size: 1.5rem; /* Adjust heading size */
+            }
+
+            .content p {
+                font-size: 0.9rem; /* Adjust paragraph size */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 0.875rem; /* Further reduce font size */
+            }
+
+            .navbar-brand img {
+                width: 30px; /* Adjust logo size */
+                height: 30px; /* Maintain aspect ratio */
+            }
+
+            .content .container {
+                padding: 0 5px; /* Add padding for smaller screens */
+            }
+
+            .content h2 {
+                font-size: 1.25rem; /* Adjust heading size */
+            }
+
+            .content p {
+                font-size: 0.8rem; /* Adjust paragraph size */
+            }
+
+            .btn-secondary {
+                font-size: 0.75rem; /* Adjust button font size */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./assets/maya cafe logo(2).png" alt="Logo" class="d-inline-block align-text-top">
+                MAYACAFE
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./staff.html">Staff</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="bg-video-container">
+        <video autoplay muted loop>
+            <source src="./assets/videoplayback (8).webm" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+    </div>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <h2 class="fw-normal">Heading</h2>
+                    <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+                    <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                </div>
+                <div class="col-lg-4">
+                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <h2 class="fw-normal">Heading</h2>
+                    <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+                    <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                </div>
+                <div class="col-lg-4">
+                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <h2 class="fw-normal">Heading</h2>
+                    <p>And lastly this, the third column of representative placeholder content.</p>
+                    <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
